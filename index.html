@@ -1,211 +1,78 @@
 <!doctype html>
-<html>
+<html prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/CreativeWork">
   <head>
-    <title>Neuronal Synchrony</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" media="screen" type="text/css" href="./styles/main.css" />
-    <link rel="stylesheet" type="text/css" href="./styles/player.css">
-    <link rel="icon" type="image/png" href="./images/favicon.png" />
+    <meta charset="utf-8">
+    <title>Patatap-UFJF-UFRJ</title>
+
+    <meta name="keywords" content="patatap, neuronal synchrony, music, audio, visual, app, 2d, jonobr1, lullatone, synesthesia">
+    <meta name="author" content="jonobr1">
+    <meta name="customization" content="jahpd">
+
+    <!-- Sharing -->
+    <meta name="name" content="Patatap">
+    <meta name="image" content="http://www.patatap.com/images/thumbnail.png">
+    <meta name="description" content="Patatap is a portable animation and sound kit. With the touch of a finger create melodies charged with moving shapes. Warning: contains flashing images.">
+
+    <meta itemprop="name" content="Patatap">
+    <meta itemprop="description" content="Patatap is a portable animation and sound kit. With the touch of a finger create melodies charged with moving shapes. Warning: contains flashing images.">
+    <meta itemprop="image" src="http://www.patatap.com/images/thumbnail.png">
+
+    <meta property="og:title" content="Patatap">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="http://www.patatap.com/images/thumbnail.png"/>es
+    <meta property="og:site_name" content="Patatap">
+    <meta property="og:description" content="Patatap is a portable animation and sound kit. With the touch of a finger create melodies charged with moving shapes. Warning: contains flashing images.">
+
+    <!-- iOS specific catches -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- icons -->
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"/>
+    <link rel="icon" href="/images/favicon.ico" />
+
+    <!-- styles -->
+    <link href='//fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" media="screen" type="text/css" href="/styles/main.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/coffee-script/1.7.1/coffee-script.min.js"></script>
   </head>
   <body>
-    <div id="content">
+    <h1 style="width: 0; height: 0; overflow: hidden;">
+      Patatap is a portable animation and sound kit. With the touch of a finger create melodies charged with moving shapes. Warning: contains flashing images.
+    </h1>
+    <div id="content"></div>
+ 
+    <div id="lobby">
       <div id="loader"></div>
+      <div id="asset-info">
+        <span id="loaded">0</span> / <span id="total-assets">156</span>
+      </div>
     </div>
+
     <div class="scripts" style="display: none;">
-      <script src="//connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
-      <script src="./third-party/has.js"></script>
-      <script src="./third-party/url.js"></script>
-      <script src="./third-party/jquery.js"></script>
-      <script src="./third-party/tween.js"></script>
-      <script src="./third-party/two.js"></script>
-      <script src="./src/animations.js"></script>
-      <script src="./third-party/jquery.bigscreen.js"></script>
-      <script src="./src/player.js"></script>
-      <script src="./src/record.js"></script>
-      <script src="./src/track-data.js"></script>
-      <script src="./src/editor.js"></script>
+      <script src="/third-party/has.js"></script>
+      <script src="/third-party/url.js"></script>
+      <script src="/third-party/jquery.js"></script>
       <script>
 
-        $(function() {
-
-          var container = $('#content');
-          var player = window.player = new Player('1be2c599f1ef24a174ec0fc88a14052d')
-            .appendTo(container[0]);
-
-          $(window).bind('keyup', function(e, data) {
-
-            e.preventDefault();
-            var code = e.which || data;
-            var index;
-
-            switch (code) {
-
-              // Q - I
-              case 81:
-                index = '0,7';
-                break;
-              case 87:
-                index = '0,6';
-                break;
-              case 69:
-                index = '0,5';
-                break;
-              case 82:
-                index = '0,4';
-                break;
-              case 84:
-                index = '0,3';
-                break;
-              case 89:
-                index = '0,2';
-                break;
-              case 85:
-                index = '0,1';
-                break;
-              case 73:
-                index = '0,0';
-                break;
-
-              // O - P
-              case 79:
-                index = '0,8';
-                break;
-              case 80:
-                index = '0,9';
-                break;
-
-              // A - K
-              case 65:
-                index = '1,7';
-                break;
-              case 83:
-                index = '1,6';
-                break;
-              case 68:
-                index = '1,5';
-                break;
-              case 70:
-                index = '1,4';
-                break;
-              case 71:
-                index = '1,3';
-                break;
-              case 72:
-                index = '1,2';
-                break;
-              case 74:
-                index = '1,1';
-                break;
-              case 75:
-                index = '1,0';
-                break;
-
-              // L - '
-              case 76:
-                index = '1,8';
-                break;
-              case 186:
-                index = '2,0';
-                break;
-              case 222:
-                index = '2,0';
-                break;
-
-              // Z - ,
-              case 90:
-                index = '2,7';
-                break;
-              case 88:
-                index = '2,6';
-                break;
-              case 67:
-                index = '2,5';
-                break;
-              case 86:
-                index = '2,4';
-                break;
-              case 66:
-                index = '2,3';
-                break;
-              case 78:
-                index = '2,2';
-                break;
-              case 77:
-                index = '2,1';
-                break;
-              case 188:
-                index = '2,0';
-                break;
-
-              // .
-              case 190:
-                index = '0,0';
-                break;
-
-              // SPACE
-              case 32:
-                index = '3,0';
-                break;
-
-            }
-
-            var animation = animations.map[index];
-            if (animation && !animation.playing()) {
-              animation.start();
-            }
-
+        /**
+         * Check before loading JavaScript that we have the necessary features
+         * in order to run the project. If we don't throw an error and display
+         * the error page.
+         */
+        if (!Object.defineProperty || !(window.AudioContext || window.webkitAudioContext)) {
+          $(function() {
+            $('#lobby').fadeOut();
           });
-
-          // url.permalink = 'https://soundcloud.com/ghostly';
-          // url.permalink = 'https://soundcloud.com/ghostly/sets/various-artists-smm-opiate';
-
-          var params = _.defaults(url, {
-            // permalink: TrackData.Lusine.Panoramic.url
-            permalink: TrackData.Kimbra['90sMusic'].url
-          });
-
-          /**
-           * Add recording functionality
-           */
-          if (url.boolean('record', false)) {
-            player.bind('play', record.start);
-          } else if (url.boolean('replay', false)) {
-            record.data = TrackData.Kimbra['90sMusic'].data; // Set data to replay
-            player.bind('play', record.replay);
-          }
-
-          player
-            .bind('finish', record.end)
-            .fetch(params.permalink, function(resp) {
-              $('#loader').fadeOut(150);
-              if (url.boolean('autostart', false)) {
-                player.play();
-              }
-            });
-
-          two
-            .bind('update', function() {
-              animations.update();
-              TWEEN.update();
-              if (player.sound) {
-                record.update(player.sound.position);
-              }
-            })
-            .play();
-
-        });
+        }
 
       </script>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-5927630-17', 'jonobr1.github.io');
-        ga('send', 'pageview');
-
-      </script>
+      <script src="/third-party/tween.js"></script>
+      <script src="/third-party/two.js"></script>
+      <script src="/src/sound.js"></script>
+      <script src="/src/animations.js"></script>
+      <script src="/src/main.js"></script>
     </div>
   </body>
 </html>
