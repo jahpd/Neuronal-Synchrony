@@ -56,7 +56,7 @@ var find = function find(hash, cb){
     });
 }
 
-mongoose.connect(require('./lib/mongoenv')(), function (error) {
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/patatap', function (error) {
     if (error) console.error(error);
     else console.log('MongoDB connected');
     isOpen = true;
@@ -109,6 +109,6 @@ io.on('connection', function(socket){
     
 });
 
-http.listen(3000, function(){
+http.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1', function(){
     console.log('=> Patatap listening on *:3000');
 });
