@@ -1,0 +1,29 @@
+{
+  "name": "neuronal-synchrony-socket",
+  "version": "0.0.1",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "patatap",
+    "mongodb",
+    "mongolab",
+    "socket.io"
+  ],
+  "author": {
+    "name": "jahpd",
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jahpd/Neuronal-Synchrony.git"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "*",
+    "socket.io": "*",
+    "mongoose":"*"
+  },
+  "engines": {
+    "node": "0.10.0"
+  },
+  "main": "server.js"
+}
