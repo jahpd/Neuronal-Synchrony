@@ -1,0 +1,5 @@
+module.exports = function(){
+    if(!process.env.MONGOLAB_URI){
+	process.env.MONGOLAB_URI = "mongodb://localhost/patatap"
+    }
+}

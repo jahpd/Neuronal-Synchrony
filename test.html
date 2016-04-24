@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Patatap-UFJF-UFRJ</title>
+    <link href='//fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" media="screen" type="text/css" href="/assets/styles/main.css" />
+  </head>
+  <body>
+    <h1 style="width: 0; height: 0; overflow: hidden;">
+      Patatap é um kit de animação sonora. Com o toque dos dedos, são criados melodias de timbres e formas. Cuidado: poussui imagens que piscam.
+    </h1>
+
+    <div id="content"></div>
+ 
+    <div id="lobby">
+      <div id="loader"></div>
+      <div id="asset-info">
+        <span id="loaded">0</span> / <span id="total-assets">156</span>
+      </div>
+    </div>
+
+    <div class="scripts" style="display: none;">
+      <script src="/assets/javascripts/has.js"></script>
+      <script src="/assets/javascripts/url.js"></script>
+      <script src="/assets/javascripts/jquery.js"></script>
+      <script>
+
+        /**
+         * Check before loading JavaScript that we have the necessary features
+         * in order to run the project. If we don't throw an error and display
+         * the error page.
+         */
+        if (!Object.defineProperty || !(window.AudioContext || window.webkitAudioContext)) {
+          $(function() {
+            $('#lobby').fadeOut();
+          });
+        }
+
+      </script>
+      <script src="/assets/javascripts/tween.js"></script>
+      <script src="/assets/javascripts/two.js"></script>
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="/assets/javascripts/sound.js"></script>
+      <script src="/assets/javascripts/animations.js"></script>
+      <script src="/assets/javascripts/main2.js"></script>
+    </div>
+  </body>
+</html>
