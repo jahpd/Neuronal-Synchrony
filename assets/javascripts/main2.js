@@ -17,7 +17,7 @@ $(function() {
 
     var socket = null;
     if(location.href.indexOf("localhost") > -1){
-	socket = io("patatap-pdbq.rhcloud.com:8000");
+	socket = io("https://patatap-pdbq.rhcloud.com:8000");
     }
     else{
 	socket = io()
