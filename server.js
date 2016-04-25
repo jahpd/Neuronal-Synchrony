@@ -14,7 +14,7 @@ app
     .use('/assets', express.static(path.join(__dirname, 'assets')))   // static files
     .get('/', function(req, res){                                          // index
 	res.sendFile(__dirname + '/test.html');
-    });
+    })
     .get('/users', function(req, res){
 	res.sendFile(__dirname + '/users.html')
     });
