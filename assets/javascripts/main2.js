@@ -16,20 +16,31 @@ $(function() {
     $('#total-assets').html(26 * letters.length);
 
     var socket = null;
+    var myhash = ''
+    
+    // https://blog.openshift.com/paas-websockets/
     if(!window.location.href.match('localhost:3000')){
-	socket = io("https://patatap-pdbq.rhcloud.com:8443");
+	if(window.location.href.match('https://datatab-pdbq.rhcloud.com')){
+	    socket = io("https://datatab-pdbq.rhcloud.com:8443");
+	}
+	if(window.location.href.match('http://datatab-pdbq.rhcloud.com')){
+	    socket = io("http://datatab-pdbq.rhcloud.com:8000");
+	}
     }
     else{
 	socket = io();
     }
 
-    var myhash = ''
-    socket.emit('user hash');
-    socket.on('user hash', function(msg){
-	myhash = msg.user.hash;
-	console.log(myhash+' connected on '+Date.now());
-	loadSounds(myhash)
-    });
+    init(socket);
+
+    function init(socket){
+	socket.emit('user hash');
+	socket.on('user hash', function(msg){
+	    myhash = msg.user.hash;
+	    console.log(myhash+' connected on '+Date.now());
+	    loadSounds(myhash)
+	});
+    }
 
     function loadSounds(hash) {
 	var soundsBuffered = _.after(26 * letters.length + 1, function() {

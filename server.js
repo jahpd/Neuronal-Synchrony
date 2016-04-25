@@ -11,9 +11,12 @@ var calcMD5 = require('./lib/md5');
 
 // Application conf
 app
-    .use('/assets',      express.static(path.join(__dirname, 'assets')))   // static files
+    .use('/assets', express.static(path.join(__dirname, 'assets')))   // static files
     .get('/', function(req, res){                                          // index
 	res.sendFile(__dirname + '/test.html');
+    });
+    .get('/users', function(req, res){
+	res.sendFile(__dirname + '/users.html')
     });
 
 
@@ -87,6 +90,17 @@ io.on('connection', function(socket){
 	    save(musician, function(m){
 		io.emit('user loaded', {user:{hash: m.hash}});
 	    })
+	})
+    })
+
+    on(socket, 'list users', function(msg){
+	Musician.find({}, function(musicians){
+	    // return only hashes
+	    var hashes = []
+	    musicians.forEach(function(m){
+		hashes.append(m.hash);
+	    })
+	    io.emit('user loaded', {hashes: hashes});
 	})
     })
     
