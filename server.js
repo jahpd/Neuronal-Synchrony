@@ -64,6 +64,7 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/patatap'
 
 var db = mongoose.connection;
 
+io.set('transports', [ 'polling', 'websocket' ]);
 io.on('connection', function(socket){
     
     on(socket, 'user hash', function(msg){
