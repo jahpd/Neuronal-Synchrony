@@ -16,12 +16,13 @@ $(function() {
     $('#total-assets').html(26 * letters.length);
 
     var socket = null;
-    if(location.href.indexOf("localhost") > -1){
-	socket = io("https://patatap-pdbq.rhcloud.com:8000");
+    if(!window.location.href.match('localhost:3000')){
+	socket = io("https://patatap-pdbq.rhcloud.com:8443");
     }
     else{
-	socket = io()
+	socket = io();
     }
+
     var myhash = ''
     socket.emit('user hash');
     socket.on('user hash', function(msg){
