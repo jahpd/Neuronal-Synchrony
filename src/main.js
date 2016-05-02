@@ -10,13 +10,9 @@ $(function() {
    * Append Sound Generation to Animations
    */
 
-  var letters = ['A', 'B', 'C', 'D', 'E', 'F'];
-  var path = '/Neuronal-Synchrony/assets/', filetype = '.mp3';
+  var letters = ['A', 'B', 'C'];
+  var path = '/Neuronal-Synchrony/assets/ufrj/', filetype = '.mp3';
   var asset_count = 0, $loaded = $('#loaded');
-
-  if (url.boolean('kiosk')) {
-    path += 'kiosk/';
-  }
 
   $('#total-assets').html(26 * letters.length);
 
@@ -45,7 +41,7 @@ $(function() {
         });
       }
     });
-    var silent = new Sound('/Neuronal-Synchrony/assets/silent.mp3', function() {
+    var silent = new Sound('/assets/silent.mp3', function() {
       var enableAudio = function () {
         Sound.enabled = true;
         silent.play();
@@ -146,7 +142,6 @@ $(function() {
         e.preventDefault();
         var code = e.which || data;
         var index;
-
         switch (code) {
 
           // Q - P
@@ -240,6 +235,12 @@ $(function() {
           case 32:
             index = '3,0';
             break;
+
+	  case 18:
+	    animations.update('minus')
+	    //index= '3,0'
+	    
+	    break;
 
         }
 
@@ -513,9 +514,9 @@ $(function() {
         animation.clear();
       }
       animation.start(undefined, silent);
-      if (window.ga) {
-        window.ga('send', 'event', 'animation', 'trigger', hash);
-      }
+      //if (window.ga) {
+      //  window.ga('send', 'event', 'animation', 'trigger', hash);
+      //}
     }
 
   }

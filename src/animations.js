@@ -2508,6 +2508,8 @@ window.animations = (function() {
 
   changeColors.hash = '3,';
 
+  changeColors.reverseHash='4,';
+
   changeColors.callback = _.identity;
 
   changeColors.playing = function() {
@@ -2606,11 +2608,15 @@ window.animations = (function() {
         return exports;
       }
 
+      
       palette = PALETTE[current];
 
       if (has.mobile) {
         amount = setColors(palette);
       } else {
+	  if(arguments[0] !== undefined && arguments[0]==='minus'){
+	      palette = PALETTE[--current];
+	  }
         amount = tweenColors(palette);
       }
 
