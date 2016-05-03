@@ -11,14 +11,14 @@ $(function() {
    */
 
   var letters = ['A', 'B', 'C'];
-  var path = '/assets/ufrj/', filetype = '.mp3';
+  var path = '/Neuronal-Synchrony/assets/ufrj/', filetype = '.mp3';
   var asset_count = 0, $loaded = $('#loaded');
 
   $('#total-assets').html(26 * letters.length);
 
   var soundsBuffered = _.after(26 * letters.length + 1, function() {
     if (url.loop && url.loop.match(/(clap|groove)/ig)) {
-      new Sound('/assets/' + url.loop.replace(/\//ig, '') + '-loop' + filetype, function() {
+      new Sound('/Neuronal-Synchrony/assets/' + url.loop.replace(/\//ig, '') + '-loop' + filetype, function() {
         this.play({
           loop: true
         });
@@ -41,7 +41,7 @@ $(function() {
         });
       }
     });
-    var silent = new Sound('/assets/silent.mp3', function() {
+    var silent = new Sound('/Neuronal-Synchrony/assets/silent.mp3', function() {
       var enableAudio = function () {
         Sound.enabled = true;
         silent.play();
