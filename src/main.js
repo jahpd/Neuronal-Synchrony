@@ -10,7 +10,7 @@ $(function() {
    * Append Sound Generation to Animations
    */
 
-  var letters = ['A', 'B', 'C'];
+  var letters = ['A', 'B', 'C', 'D', 'E', 'F'];
   var path = '/Neuronal-Synchrony/assets/ufrj/', filetype = '.mp3';
   var asset_count = 0, $loaded = $('#loaded');
 
