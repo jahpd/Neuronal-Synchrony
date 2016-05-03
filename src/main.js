@@ -41,7 +41,7 @@ $(function() {
         });
       }
     });
-    var silent = new Sound('/assets/silent.mp3', function() {
+    var silent = new Sound('/Neuronal-Synchrony/assets/silent.mp3', function() {
       var enableAudio = function () {
         Sound.enabled = true;
         silent.play();
