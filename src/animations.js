@@ -2508,8 +2508,6 @@ window.animations = (function() {
 
   changeColors.hash = '3,';
 
-  changeColors.reverseHash='4,';
-
   changeColors.callback = _.identity;
 
   changeColors.playing = function() {
@@ -2525,6 +2523,37 @@ window.animations = (function() {
   _.each(_.range(8), function(i) {
     monome[changeColors.hash + i] = changeColors;
   });
+
+  // hack reverse colors
+  var reverseColors = {};
+
+  reverseColors.start = function(onComplete) {
+    current = Math.abs(current - 1) % PALETTE.length;
+    _.each(exports.list, iterateSoundUpdate);
+    changedColors = false;
+    if (_.isFunction(onComplete)) {
+      reverseColors.callback = onComplete;
+    }
+  };
+
+  reverseColors.hash = '4,';
+
+  reverseColors.callback = _.identity;
+
+  reverseColors.playing = function() {
+    return !changedColors;
+  };
+
+  reverseColors.onComplete = function() {
+    reverseColors.callback();
+  };
+
+  reverseColors.clear = _.identity;
+
+  _.each(_.range(8), function(i) {
+    monome[reverseColors.hash + i] = reverseColors;
+  });
+
   monome['2,7'] = changeColors;  // Export for mobile
 
   var iterateSoundUpdate = function(o) {
@@ -2614,9 +2643,6 @@ window.animations = (function() {
       if (has.mobile) {
         amount = setColors(palette);
       } else {
-	  if(arguments[0] !== undefined && arguments[0]==='minus'){
-	      palette = PALETTE[--current];
-	  }
         amount = tweenColors(palette);
       }
 
